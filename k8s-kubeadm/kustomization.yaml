@@ -1,0 +1,10 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - 00-namespace.yaml
+  - 01-rds-secret.yaml
+  - 02-backend-deployment.yaml
+  - 03-backend-service.yaml
+  - 04-frontend-deployment.yaml
+  - 05-frontend-service.yaml
