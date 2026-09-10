@@ -21,7 +21,7 @@ spec:
       containers:
         - name: backend
           # Use your Docker Hub / ECR image or local image on Kubeadm nodes
-          image: ankitmori1626/three-tier-backend:latest
+          image: ankitmori1626/form-backend:latest
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 5000
