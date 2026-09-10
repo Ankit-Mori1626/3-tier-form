@@ -2,7 +2,7 @@ pipeline {
     agent any
     
     environment {
-        DOCKERHUB_CREDENTIALS = credentials('dockerhub-creds')
+        DOCKERHUB_CREDENTIALS = credentials('Dockerhub-creds')
         DOCKERHUB_USERNAME = "ankitmori1626"
         BACKEND_IMAGE = "${DOCKERHUB_USERNAME}/form-backend"
         FRONTEND_IMAGE = "${DOCKERHUB_USERNAME}/form-frontend"
@@ -33,7 +33,7 @@ pipeline {
         }
         stage('Push to Docker Hub') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', passwordVariable: 'DOCKERHUB_PASSWORD', usernameVariable: 'DOCKERHUB_USERNAME')]) {
+                withCredentials([usernamePassword(credentialsId: 'Dockerhub-creds', passwordVariable: 'DOCKERHUB_PASSWORD', usernameVariable: 'DOCKERHUB_USERNAME')]) {
                     sh """
                         echo "$DOCKERHUB_PASSWORD" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
                         docker push ${BACKEND_IMAGE}:${TAG}
@@ -44,7 +44,7 @@ pipeline {
         }
         stage('Deploy to Kubernetes') {
             steps {
-                withKubeConfig([credentialsId: 'k8s-kubeconfig']) {
+                withKubeConfig([credentialsId: 'kube-config']) {
                     sh """
                         kubectl apply -k k8s-kubeadm/
 
