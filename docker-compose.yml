@@ -41,7 +41,9 @@ services:
       postgres_db:
         condition: service_healthy
     networks:
-      - app_network
+      app_network:
+        aliases:
+          - backend-service
 
   # Tier 1: Frontend Web UI (Nginx)
   frontend:
