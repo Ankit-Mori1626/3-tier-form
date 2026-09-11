@@ -1,11 +1,7 @@
-// API Base Configuration
-const API_BASE_URL = window.location.port === '5000' || window.location.hostname === 'localhost' && window.location.port === ''
-  ? 'http://localhost:5000' 
-  : (window.__API_URL__ || window.location.origin.replace(/:\d+$/, ':5000'));
-
+// API Endpoints (Proxied via Nginx reverse proxy to backend-service)
 const API_ENDPOINTS = {
-  health: `${API_BASE_URL}/health`,
-  submissions: `${API_BASE_URL}/api/submissions`,
+  health: '/health',
+  submissions: '/api/submissions',
 };
 
 // DOM Elements
